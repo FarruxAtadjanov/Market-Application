@@ -1,0 +1,24 @@
+﻿[
+  {
+    "Product": "Chipotle",
+    "products": [
+      {
+        "Name": "Chicken Burrito",
+        "Price": 50000,
+        "Type": "chicken"
+        
+      },
+      {
+        "Name": "Steak Burrito",
+        "Price": 55000,
+        "Type": "steak"
+        
+      },
+      {
+        "Name": "Chips and Queso",
+        "Price": 77000,
+        "Type": "steak"
+      }
+    ]
+  }
+]
