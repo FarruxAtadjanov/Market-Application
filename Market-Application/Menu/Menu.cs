@@ -1,4 +1,6 @@
-﻿using Market_Application.Repository;
+﻿using ConsoleTables;
+using Market_Application.Moduls;
+using Market_Application.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,55 +18,151 @@ namespace Market_Application.Servise
             Title = "Welcome!";          
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(prom);
+        Back:
+            string s = "* * * * * * * * * *";
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"  {s}  {"1. SignIn"}  {s}\n  {s}  {"2. SignUp"}  {s}\n  {s}  {"3. Exit"}    {s}");
+            Console.Write(" Select >  ");
+            string select = Console.ReadLine();
+
+            switch (select)
+            {
+                case "1":
+                    Commerse.SignIn();
+                    break;
+
+                case "2":
+                    Commerse.SignUp();
+                    break;
+
+                case "3":
+                    Environment.Exit(0);
+                    break;
+
+                default:
+                    Console.Clear();
+                    goto Back;
+            }
+
         }
-        public void RunMainMenu()
+
+
+        public static void RunMainMenu()
         {
-            ProductRepository prRepo = new ProductRepository();
+            RunMainMenu:
+            Console.Clear();
+            ProductRepository productRepository = new ProductRepository();
+            SaleAction saleAction = new SaleAction();
+
+
+
             string prompt = prom;
-            string[] options = { "1. Browse all products", "2. Add product", "3. Search product", "4. Update product", "5. Exit" };
+            string[] options = { "1. Browse all products", "2. Add product", "3. Search product", "4. Update product","5. Buy Product" ,"6. Exit" };
+            Console.WriteLine(prompt);
+            foreach (var item in options)
+            {
+                Console.WriteLine(item);
+            }
+            int selected = int.Parse(Console.ReadLine());
 
-            ClientMenu mainMenu = new ClientMenu(prompt, options);
-            int selectedIndex = mainMenu.Run();
+            Product product = new Product();
+            ProductRepository repository = new ProductRepository();
 
-            switch (selectedIndex)
+            switch (selected)
             {
                 case 1:
-                    prRepo.ShowProducts();
+                    productRepository.ShowProducts();
                     break;
                 case 2:
-                    
-                    break;
+
+                    Console.Write("Mahsulot nomini kiriting: ");
+                    product.Name = Console.ReadLine().ToLower();
+                    Console.Write("Mahsulot turini kiriting: ");
+                    product.Type = Console.ReadLine().ToLower();
+                    Console.Write("Mahsulot narxini kiriting: ");
+                    product.Price = int.Parse(Console.ReadLine());
+
+                    repository.AddProduct(product);
+                    goto RunMainMenu;
                 case 3:
+                    Console.Clear();
+                    Console.WriteLine(prompt);
+                    Console.WriteLine("Qaysi bo'lim bo'yicha qidirmoqchisiz? ");
+                    Console.WriteLine("1. Nomi bo'yicha\n2. Narxi bo'yicha\n3. Turi bo'yicha");
+                    Console.Write("> ");
+                    int selectedSearch = int.Parse(Console.ReadLine());
+                    if (selectedSearch == 1)
+                    {
+                        Console.Write("Nomini kiriting: ");
+                        string searchWord = Console.ReadLine().ToLower();
+                        repository.SearchProduct(selectedSearch, searchWord);
+                    }
+                    else if (selectedSearch == 2)
+                    {
+                        Console.Write("Narxini kiriting: ");
+                        string searchWord = Console.ReadLine();
+                        repository.SearchProduct(selectedSearch, searchWord);
+                    }
+                    else if(selectedSearch == 3)
+                    {
+                        Console.Write("Turini kiriting: ");
+                        string searchWord = Console.ReadLine().ToLower();
+                        repository.SearchProduct(selectedSearch, searchWord);
+                    }
                     
+                    Console.WriteLine("Asosiy menuga qaytasizmi? [y / n] ");
+                    string s = Console.ReadLine();
+                    if (s == "y" || s == "Y") goto RunMainMenu;
+                    else if (s == "N" || s == "n") Environment.Exit(0);                   
                     break;
                 case 4:
-                    
+                    Console.Clear();
+                    Console.WriteLine(prompt);
+                    Console.Write("O'zgartirmoqchi bo'lgan mahsulot nomini kiriting: ");
+                    product.Name = Console.ReadLine();
+                    Console.Write("O'zgartirmoqchi bo'lgan mahsulot narxini kiriting:");
+                    product.Price = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Qaysi bo'lim bo'yicha o'zgartirmoqchisiz? ");
+                    Console.WriteLine("1. Nomi bo'yicha\n2. Narxi bo'yicha\n3. Turi bo'yicha");
+                    Console.Write("> ");
+                    int se = int.Parse(Console.ReadLine());
+                    if (se == 1)
+                    {
+                        Console.Write("Nomini kiriting: ");
+                        string searchWord = Console.ReadLine().ToLower();
+                        repository.UpdateProduct(product,se, searchWord);
+                    }
+                    else if (se == 2)
+                    {
+                        Console.Write("Narxini kiriting: ");
+                        string searchWord = Console.ReadLine();
+                        repository.UpdateProduct(product,se, searchWord);
+                    }
+                    else if (se == 3)
+                    {
+                        Console.Write("Turini kiriting: ");
+                        string searchWord = Console.ReadLine().ToLower();
+                        repository.UpdateProduct(product,se, searchWord);
+                    }
+
+                    Console.WriteLine("Asosiy menuga qaytasizmi? [y / n] ");
+                    string x = Console.ReadLine();
+                    if (x == "y" || x == "Y") goto RunMainMenu;
+                    else if (x == "N" || x == "n") Environment.Exit(0);
                     break;
                 case 5:
+                    saleAction.AddProduct();
+                    break;
+                case 6:
                     WriteLine("\nPress any key to exit...");
-                    ReadKey(true);
+                    Console.ReadKey();
                     Environment.Exit(0);
                     break;
                 
             }
         }
 
-        private void ADD()
-        {
 
-        }
-        private void DeletE()
-        {
-
-        }
-        private void SearCH()
-        {
-
-        }
-        private void UpdatE()
-        {
-
-        }
         static string prom = @"
  __      __       .__                                  __          
 /  \    /  \ ____ |  |   ____  ____   _____   ____   _/  |_  ____  
@@ -80,5 +178,6 @@ namespace Market_Application.Servise
                \/     \//_____/     \/      \/       \/            
                       
 ".ToString();
+
     }
 }

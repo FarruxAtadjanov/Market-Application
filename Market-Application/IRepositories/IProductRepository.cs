@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Market_Application.IRepositories
 {
-     interface IProductRepository
+    interface IProductRepository
     {
         public void AddProduct(Product product);
 
@@ -16,6 +16,6 @@ namespace Market_Application.IRepositories
 
         public void UpdateProduct(Product product, int updateChoise, string newUpdateDate);
 
-        public IEnumerable<Product> SearchProduct(int searchCoise, string newWord);
+        public void SearchProduct(int searchCoise, string newWord);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market_Application.Moduls
+namespace Market_Application.Models
 {
     internal class User
     {
@@ -15,9 +15,9 @@ namespace Market_Application.Moduls
 
         public string LastName { get; set; }
 
-        public string Login { get; set; }
+        public  string Login { get; set; }
 
-        public string Password { get; set; }
+        public  string Password { get; set; }
 
         public UserRole Role { get; set; } = UserRole.User;
 

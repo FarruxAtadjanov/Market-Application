@@ -1,24 +1,51 @@
-﻿[
+[
+  
   {
-    "Product": "Magazin",
-    "products": [
-      {
-        "Name": "Chicken Burrito",
-        "Price": 50000,
-        "Type": "chicken"
-        
-      },
-      {
-        "Name": "Steak Burrito",
-        "Price": 55000,
-        "Type": "steak"
-        
-      },
-      {
-        "Name": "Chips and Queso",
-        "Price": 77000,
-        "Type": "steak"
-      }
-    ]
+    "Id": 1,
+    "Name": "olma",
+    "Price": 15000,
+    "Type": "meva"
+  },
+  {
+    "Id": 2,
+    "Name": "anor",
+    "Price": 20000,
+    "Type": "meva"
+  },
+  {
+    "Id": 3,
+    "Name": "nok",
+    "Price": 17000,
+    "Type": "meva"
+  },
+  {
+    "Id": 4,
+    "Name": "cola",
+    "Price": 10000,
+    "Type": "ichimlik"
+  },
+  {
+    "Id": 5,
+    "Name": "fanta",
+    "Price": 10000,
+    "Type": "ichimlik"
+  },
+  {
+    "Id": 6,
+    "Name": "gorilla",
+    "Price": 8500,
+    "Type": "ichimlik"
+  },
+  {
+    "Id": 7,
+    "Name": "sprite",
+    "Price": 11000,
+    "Type": "ichimlik"
+  },
+  {
+    "Id": 8,
+    "Name": "kefir",
+    "Price": 12000,
+    "Type": "sut va qatiq mahsulotlari"
   }
 ]

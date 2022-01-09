@@ -1,7 +1,12 @@
-﻿using System;
+﻿using Market_Application.Models;
+using Market_Application.Moduls;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Market_Application.Servise
@@ -10,17 +15,38 @@ namespace Market_Application.Servise
     {
         public static void SignIn()
         {
-            Menu start = new Menu();
 
             Console.Write("Login >  ");
             string login = Console.ReadLine();
             Console.Write("Password >  ");
             string password = (string)HidePassword();
 
-            start.RunMainMenu();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("\n");
 
+            if (login != null && password != null)
+            {
+                string json = File.ReadAllText(Constants.UsersDbPath);
+                IList<User> user = JsonConvert.DeserializeObject<IList<User>>(json);
 
-
+                foreach (var item in user)
+                {
+                    if(item.Login == login && item.Password == password)
+                    {
+                        Menu.RunMainMenu();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Login yoki parol xato qaytatdan urinib ko'ring");
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                        Menu.Start();
+                        
+                        
+                    }
+                }
+                
+            }
         }
         public static void SignUp()
         {

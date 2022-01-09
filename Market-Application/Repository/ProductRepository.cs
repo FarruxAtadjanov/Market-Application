@@ -1,4 +1,5 @@
-﻿using Market_Application.IRepositories;
+﻿using ConsoleTables;
+using Market_Application.IRepositories;
 using Market_Application.Moduls;
 using Market_Application.Servise;
 using Newtonsoft.Json;
@@ -6,35 +7,37 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
-
+using System.Threading;
 
 namespace Market_Application.Repository
 {
     internal class ProductRepository : IProductRepository
     {
-        public static IEnumerable<Product> result;
+        public  IEnumerable<Product> result;
 
         #region AddProduct
-        public void AddProduct(Product product)
+        public  void AddProduct(Product product)
         {
             string json = File.ReadAllText(Constants.ProductsDbPath);
             IList<Product> products = JsonConvert.DeserializeObject<List<Product>>(json);
             products.Add(new Product
             {
-                Name = product.Name,
+                Id = product.Id,
+                Name = product.Name.ToLower(),
                 Price = product.Price,
-                Type = product.Type,
-                Purchased = product.Purchased
+                Type = product.Type.ToLower(),
+
             });
             string jsonOut = JsonConvert.SerializeObject(products);
             File.WriteAllText(Constants.ProductsDbPath, jsonOut);
             Console.WriteLine("Mahsulot qo'shildi");
+
+            Thread.Sleep(1500);
         }
         #endregion
 
         #region RemoveProduct
-        public  void RemoveProduct(Product product)
+        public   void RemoveProduct(Product product)
         {
             string json = File.ReadAllText(Constants.ProductsDbPath);
 
@@ -60,9 +63,7 @@ namespace Market_Application.Repository
             int check = 0;
 
             string json = File.ReadAllText(Constants.ProductsDbPath);
-
-            IList<Product> products = JsonConvert.DeserializeObject <List<Product>>(json);
-            
+            IList<Product> products = JsonConvert.DeserializeObject <List<Product>>(json);          
             IList<Product> prod = new List<Product>();
 
             foreach (var item in products)
@@ -77,14 +78,11 @@ namespace Market_Application.Repository
                                 item.Name = newUpdateDate;
                                 break;
                             case 2:
-                                item.Price = double.Parse(newUpdateDate);
+                                item.Price = int.Parse(newUpdateDate);
                                 break;
                             case 3:
                                 item.Type = newUpdateDate;
-                                break;
-                            case 4:
-                                item.Purchased = double.Parse(newUpdateDate);
-                                break;
+                                break;                         
                         }
                         check++; 
                         prod.Add(item);
@@ -101,8 +99,9 @@ namespace Market_Application.Repository
         }
         #endregion
 
+
         #region Search Product
-        public  IEnumerable<Product> SearchProduct(int searchCoise, string newWord)
+        public  void SearchProduct(int searchCoise, string newWord)
         {
             string json = File.ReadAllText(Constants.ProductsDbPath);
             IList<Product> products = JsonConvert.DeserializeObject<List<Product>>(json);
@@ -113,28 +112,36 @@ namespace Market_Application.Repository
                     result = products.Select(p => p).Where(p => p.Name.Equals(newWord)).ToList();
                     break;
                 case 2:
-                    result = products.Select(p => p).Where(p => p.Price.Equals(newWord)).ToList();
+                    result = products.Select(p => p).Where(p => p.Price.Equals(int.Parse(newWord))).ToList();
                     break;
                 case 3:
                     result = products.Select(p => p).Where(p => p.Type.Equals(newWord)).ToList();
-                    break;
-                case 4:
-                    result = products.Select(p => p).Where(p => p.Purchased.Equals(newWord)).ToList();
                     break;
                 default:
                     Console.WriteLine("Bunday malumot bazadan topilmadi");
                     break;
             }
-            return result;
+            foreach (var item in result)
+            {
+                Console.WriteLine($"Nomi {item.Name}\nNarxi {item.Price}\nTuri {item.Type}\n");
+            }
         }
         #endregion
 
         #region Show Products
-        public IList<Product> ShowProducts()
+        public  void ShowProducts()
         {
             string json = File.ReadAllText(Constants.ProductsDbPath);
-            return JsonConvert.DeserializeObject<IList<Product>>(json);
-      
+            IList<Product> show = JsonConvert.DeserializeObject<List<Product>>(json);
+
+            ConsoleTable table = new ConsoleTable("Id", "Name", "Price", "Type");
+            foreach (var item in show)
+            {
+                table.AddRow(item.Id, item.Name, item.Price, item.Type);
+            }
+            Console.WriteLine(table);
+
+
         }
         #endregion
     }

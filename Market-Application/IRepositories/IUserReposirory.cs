@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Market_Application.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Market_Application.IRepositories
 {
-    interface IUserReposirory
+     interface IUserReposirory
     {
+        void Create(User user);
+
+        User Login(string login, string password);
 
     }
 }
