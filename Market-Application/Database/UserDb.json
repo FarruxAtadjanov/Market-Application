@@ -1,1 +1,43 @@
-[{"Id":"a190de5f-fda1-48ff-83d6-bf10ccaac406","FirstName":"Farrux","LastName":"Atadjanov","Login":"admin","Password":"12345","Role":1},{"Id":"316abf48-82b6-48f9-ac43-86002d1ac6db","FirstName":"Javohir","LastName":"Mamasoliyev","Login":"java","Password":"123","Role":1},{"Id":"1f4b51aa-3e10-4ee4-9943-d972dcf12149","FirstName":"Izzat","LastName":"Nazarov","Login":"izzat","Password":"123","Role":1},{"Id":"f96f31a2-73e2-4b5a-9a2b-8563431c7be1","FirstName":"Abbos","LastName":"mukmadov","Login":"abb","Password":"123","Role":1},{"Id":"943dcc4b-76a4-408e-9d0c-82b40203d47e","FirstName":"Kamol","LastName":"Jumatov","Login":"kamol","Password":"123","Role":1}]
+[
+  
+  {
+    "Id": "a190de5f-fda1-48ff-83d6-bf10ccaac406",
+    "FirstName": "Farrux",
+    "LastName": "Atadjanov",
+    "Login": "admin",
+    "Password": "12345",
+    "Role": 1
+  },
+  {
+    "Id": "316abf48-82b6-48f9-ac43-86002d1ac6db",
+    "FirstName": "Javohir",
+    "LastName": "Mamasoliyev",
+    "Login": "java",
+    "Password": "123",
+    "Role": 1
+  },
+  {
+    "Id": "1f4b51aa-3e10-4ee4-9943-d972dcf12149",
+    "FirstName": "Izzat",
+    "LastName": "Nazarov",
+    "Login": "izzat",
+    "Password": "123",
+    "Role": 1
+  },
+  {
+    "Id": "f96f31a2-73e2-4b5a-9a2b-8563431c7be1",
+    "FirstName": "Abbos",
+    "LastName": "mukmadov",
+    "Login": "abb",
+    "Password": "123",
+    "Role": 1
+  },
+  {
+    "Id": "943dcc4b-76a4-408e-9d0c-82b40203d47e",
+    "FirstName": "Kamol",
+    "LastName": "Jumatov",
+    "Login": "kamol",
+    "Password": "123",
+    "Role": 1
+  }
+]

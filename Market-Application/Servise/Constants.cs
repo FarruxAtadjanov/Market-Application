@@ -10,6 +10,6 @@ namespace Market_Application.Servise
     {
         public static readonly string ProductsDbPath = @"..\..\..\Database\ProductDb.json";
         public static readonly string UsersDbPath = @"..\..\..\Database\UserDb.json";
-        public static readonly string PurchasedDbPath = @"..\..\..\Database\Purchased_db.json";
+        public static readonly string PurchasedDbPath = @"..\..\..\Database\PurchasedDb.json";
     }
 }

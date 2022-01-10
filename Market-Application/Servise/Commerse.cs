@@ -28,11 +28,11 @@ namespace Market_Application.Servise
             if (login != null && password != null)
             {
                 string json = File.ReadAllText(Constants.UsersDbPath);
-                IList<User> user = JsonConvert.DeserializeObject<IList<User>>(json);
+                IList<User> users = JsonConvert.DeserializeObject<IList<User>>(json);
 
-                foreach (var item in user)
+                var user = users.FirstOrDefault(p => p.Login == login && p.Password == password);
                 {
-                    if(item.Login == login && item.Password == password)
+                    if(user.Login == login && user.Password == password)
                     {
                         Menu.RunMainMenu();
                     }

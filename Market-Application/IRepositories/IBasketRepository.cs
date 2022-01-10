@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Market_Application.IRepositories
 {
-    internal interface IBasket
+    internal interface IBasketRepository
     {
         void AddToBasket(Product product);
 

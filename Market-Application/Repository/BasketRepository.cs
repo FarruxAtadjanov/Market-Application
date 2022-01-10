@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Market_Application.Repository
 {
-    internal class Basket : IBasket
+    internal class BasketRepository : IBasketRepository
     {
         private IList<Product> _basket = new List<Product>();
 
