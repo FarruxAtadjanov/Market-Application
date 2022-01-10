@@ -1,4 +1,5 @@
-﻿using Market_Application.IRepositories;
+﻿using ConsoleTables;
+using Market_Application.IRepositories;
 using Market_Application.Moduls;
 using Market_Application.Servise;
 using Newtonsoft.Json;
@@ -68,15 +69,19 @@ namespace Market_Application.Repository
                     string json2 = File.ReadAllText(Constants.PurchasedDbPath);
                     IList<Product> resultProducts = JsonConvert.DeserializeObject<IList<Product>>(json2);
                     
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Siz sotib olgan mahsulotlar ro'yxati ");
                     int resultPrice = 0;
+                    ConsoleTable table = new ConsoleTable("Id", "Name", "Price", "Type");
                     foreach (var item in resultProducts)
                     {
                         resultPrice += item.Price;
-                        Console.WriteLine($"{item.Name}  ---  {item.Price}  ---  {item.Type}");
+                        table.AddRow(item.Id, item.Name, item.Price, item.Type);
                     }
-                    Console.WriteLine($"\t\t\t\t\t\t Jami summa : {resultPrice}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(table);
+                    Console.WriteLine($"Jami summa : {resultPrice}");
+
 
                     Console.WriteLine("Asosiy menuga qaytasizmi? [y / n]");
                     Console.Write("> ");

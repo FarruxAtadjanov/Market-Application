@@ -21,7 +21,7 @@ namespace Market_Application.Servise
         Back:
             string s = "* * * * * * * * * *";
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"  {s}  {"1. SignIn"}  {s}\n  {s}  {"2. SignUp"}  {s}\n  {s}  {"3. Exit"}    {s}");
+            Console.WriteLine($"  {s} \t\t {"1. Kirish"} \t\t {s}\n  {s} \t\t {"2. Ro'yxatdan o'tish"} \t {s}\n  {s}  \t\t {"3. Chiqish"}   \t\t {s}");
             Console.Write(" Select >  ");
             string select = Console.ReadLine();
 
@@ -57,7 +57,7 @@ namespace Market_Application.Servise
 
 
             string prompt = prom;
-            string[] options = { "1. Browse all products", "2. Add product", "3. Search product", "4. Update product","5. Buy Product" ,"6. Exit" };
+            string[] options = { "1. Barcha mahsulotlarni ko'rish", "2. Mahsulot qo'shish", "3. Mahsulot qidirish", "4. Mahsulot yangilash","5. Sotib olish" ,"6. Chiqish" };
             Console.WriteLine(prompt);
             foreach (var item in options)
             {

@@ -1,5 +1,6 @@
 ﻿using Market_Application.Models;
 using Market_Application.Moduls;
+using Market_Application.Repository;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -50,14 +51,18 @@ namespace Market_Application.Servise
         }
         public static void SignUp()
         {
-            Console.Write("FirstName >  ");
-            string fname = Console.ReadLine();
-            Console.Write("SurName >  ");
-            string sname = Console.ReadLine();
+            User user = new User();
+            UserRepository userRepository = new UserRepository();
+
+            Console.Write("Ismingizni kiriting >  ");
+            user.FirstName = Console.ReadLine();
+            Console.Write("Familiyangizni kiriting >  ");
+            user.LastName = Console.ReadLine();
             Console.Write("Login >  ");
-            string userLogin = Console.ReadLine();
+            user.Login = Console.ReadLine();
             Console.Write("Password >  ");
-            string userPassword = Console.ReadLine();
+            user.Password = Console.ReadLine();
+            userRepository.Create(user);
         }
 
         //passwordni yashirish

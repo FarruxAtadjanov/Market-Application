@@ -7,7 +7,7 @@ namespace Market_Application.IRepositories
 {
      interface IUserReposirory
     {
-        void Create(User user);
+        public void Create(User user);
 
         User Login(string login, string password);
 

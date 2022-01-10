@@ -37,7 +37,7 @@ namespace Market_Application.Repository
         #endregion
 
         #region RemoveProduct
-        public   void RemoveProduct(Product product)
+        public  void RemoveProduct(Product product)
         {
             string json = File.ReadAllText(Constants.ProductsDbPath);
 
@@ -121,10 +121,13 @@ namespace Market_Application.Repository
                     Console.WriteLine("Bunday malumot bazadan topilmadi");
                     break;
             }
+            ConsoleTable table = new ConsoleTable("Id", "Name", "Price", "Type");
             foreach (var item in result)
             {
-                Console.WriteLine($"Nomi {item.Name}\nNarxi {item.Price}\nTuri {item.Type}\n");
+                table.AddRow(item.Id, item.Name, item.Price, item.Type);
             }
+            Console.WriteLine(table);
+           
         }
         #endregion
 
@@ -140,8 +143,26 @@ namespace Market_Application.Repository
                 table.AddRow(item.Id, item.Name, item.Price, item.Type);
             }
             Console.WriteLine(table);
-
-
+            Thread.Sleep(2000);
+            back:
+            try
+            {
+                Console.WriteLine("Asosiy menuga qaytish uchun [1] ni bosing: ");
+                Console.WriteLine("Chiqish uchun [0] ni bosing");
+                int num = int.Parse(Console.ReadLine());
+                if (num == 1)
+                {
+                    Menu.RunMainMenu();
+                }
+                else if (num == 2)
+                {
+                    Environment.Exit(0);
+                }
+            }
+            catch
+            {   Console.Clear(); 
+                goto back;
+            }
         }
         #endregion
     }
