@@ -17,8 +17,9 @@ namespace Market_Application.Repository
         public void Create(User user)
         {
             
-                string json = File.ReadAllText(Constants.UsersDbPath);
+                string json = File.ReadAllText(Constants.UsersDbPath);               
                 IList<User> users = JsonConvert.DeserializeObject<List<User>>(json);
+            
                 users.Add(new User
                 {
                     Id = Guid.NewGuid(),

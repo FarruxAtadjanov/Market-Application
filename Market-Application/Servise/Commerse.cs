@@ -53,13 +53,26 @@ namespace Market_Application.Servise
         {
             User user = new User();
             UserRepository userRepository = new UserRepository();
-
+            string json = File.ReadAllText(Constants.UsersDbPath);
+            IList<User> users = JsonConvert.DeserializeObject<List<User>>(json);
             Console.Write("Ismingizni kiriting >  ");
             user.FirstName = Console.ReadLine();
             Console.Write("Familiyangizni kiriting >  ");
             user.LastName = Console.ReadLine();
-            Console.Write("Login >  ");
+            ss:
+            Console.Write("Login >  ");          
             user.Login = Console.ReadLine();
+            foreach (var item in users)
+            {
+                if (item.Login == user.Login)
+                {
+                    Console.WriteLine("Bu login avval ishlatilgan yana urinib ko'ring!");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+
+                    goto ss;
+                }
+            }
             Console.Write("Password >  ");
             user.Password = Console.ReadLine();
             userRepository.Create(user);

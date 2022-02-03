@@ -39,5 +39,13 @@
     "Login": "kamol",
     "Password": "123",
     "Role": 1
+  },
+  {
+    "Id": "3c0bf694-fd5e-4c0e-ab65-fa4261563c28",
+    "FirstName": "Alisher",
+    "LastName": "Aminov",
+    "Login": "al123",
+    "Password": "12345",
+    "Role": 1
   }
 ]

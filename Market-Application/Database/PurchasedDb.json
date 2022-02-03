@@ -1,1 +1,9 @@
-[{"Id":6,"Name":"gorilla","Price":42500,"Type":"ichimlik"}]
+[
+  
+  {
+    "Id": 8,
+    "Name": "kefir",
+    "Price": 96000,
+    "Type": "sut va qatiq mahsulotlari"
+  }
+]
